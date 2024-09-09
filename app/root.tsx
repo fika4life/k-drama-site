@@ -3,9 +3,10 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration,
-} from "@remix-run/react";
-import "./tailwind.css";
+  ScrollRestoration
+} from '@remix-run/react';
+import './tailwind.css';
+import Navbar from './components/Navbar';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -16,7 +17,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="container mx-auto">
+        <Navbar />
         {children}
         <ScrollRestoration />
         <Scripts />
