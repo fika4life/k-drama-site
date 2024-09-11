@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router';
+import { Outlet, useLoaderData } from '@remix-run/react';
 import { TiStarFullOutline } from 'react-icons/ti';
 
 export async function loader({ params }) {
@@ -10,7 +10,7 @@ export async function loader({ params }) {
   });
 
   const data = await response.json();
-  console.log(data);
+
   return data;
 }
 
@@ -25,19 +25,24 @@ export default function TVShowDetails() {
           className="object-cover object-center"
         />
       </div>
-      <div className="space-y-2 w-1/2">
-        <h1 className="text-2xl mt-8 font-bold">{movie.name}</h1>
-        <p>
-          Seasons: {movie.number_of_seasons} | Episodes:{' '}
-          {movie.number_of_episodes}
-        </p>
-        <p></p>
-        <p>
-          <TiStarFullOutline className=" inline " /> {movie.vote_average} |{' '}
-          {movie.vote_count} votes
-        </p>
-        <h2 className="text-xl font-bold">Overview</h2>
-        <p>{movie.overview}</p>
+      <div className="flex mt-8">
+        <div className="space-y-2 w-1/2">
+          <h1 className="text-2xl font-bold">{movie.name}</h1>
+          <p>
+            Seasons: {movie.number_of_seasons} | Episodes:{' '}
+            {movie.number_of_episodes}
+          </p>
+          <p></p>
+          <p>
+            <TiStarFullOutline className=" inline " /> {movie.vote_average} |{' '}
+            {movie.vote_count} votes
+          </p>
+          <h2 className="text-xl font-bold">Overview</h2>
+          <p>{movie.overview}</p>
+        </div>
+        <div className="w-1/2">
+          <Outlet />
+        </div>
       </div>
     </>
   );
